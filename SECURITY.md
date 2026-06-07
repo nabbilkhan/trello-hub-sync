@@ -2,8 +2,8 @@
 
 ## Reporting a vulnerability
 
-Please **do not** open a public issue for security problems. Email the maintainer
-(see the GitHub profile) with details and steps to reproduce. You'll get an
+Please **do not** open a public issue for security problems. Email
+**nabbil@tensorsolutions.com** with details and steps to reproduce. You'll get an
 acknowledgement, and a fix or mitigation will be coordinated before disclosure.
 
 ## Security model

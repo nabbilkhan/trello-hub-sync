@@ -9,7 +9,7 @@ description = "Self-hosted two-way Trello hub board: aggregate the cards you own
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-authors = [{ name = "Nabbil Khan" }]
+authors = [{ name = "Nabbil Khan", email = "nabbil@tensorsolutions.com" }]
 keywords = ["trello", "kanban", "sync", "productivity", "self-hosted", "automation", "webhook"]
 classifiers = [
   "Development Status :: 5 - Production/Stable",

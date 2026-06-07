@@ -163,9 +163,11 @@ Want instant sync instead of every 30 min? Run the receiver behind any HTTPS rev
 
 **Windows / macOS?** The engine is cross-platform Python. The systemd units and example watchdog are Linux; use Task Scheduler / `launchd` / `cron` elsewhere.
 
-## Contributing
+## Contributing & contact
 
 Issues and PRs welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Security reports: [SECURITY.md](SECURITY.md).
+
+Questions, feature requests, or want help setting this up (or custom automation) for your team? Reach out: **[nabbil@tensorsolutions.com](mailto:nabbil@tensorsolutions.com)**.
 
 ## License
 
