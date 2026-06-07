@@ -1,0 +1,72 @@
+# =============================================================================
+# Trello Hub Sync — configuration
+#
+#   1.  cp config.example.toml ~/.config/trello-hub-sync/config.toml
+#   2.  Get an API key + token:  https://trello.com/power-ups/admin  (Power-Ups
+#       admin → your Power-Up → "API key"); generate a Token for your account.
+#   3.  Fill the IDs below. The easy way:
+#         export TRELLO_HUB_KEY=...   TRELLO_HUB_TOKEN=...
+#         trello-sync discover                 # -> your member id + every board
+#         trello-sync discover --board <id>    # -> a board's lists + labels
+# =============================================================================
+
+[trello]
+api_key = "YOUR_API_KEY"
+token   = "YOUR_TOKEN"
+# Prefer keeping secrets out of this file? Point to files instead (these win):
+# api_key_file = "~/.config/trello-hub-sync/api_key"
+# token_file   = "~/.config/trello-hub-sync/token"
+# Only needed for the optional real-time receiver (verifies Trello's signatures):
+# api_secret = "YOUR_API_SECRET"
+
+[hub]
+# Your personal "hub" board — the one that aggregates everything.
+board_id  = "HUB_BOARD_ID"
+# Your Trello member id. Cards you are a *member* of get mirrored. (discover prints it.)
+member_id = "YOUR_MEMBER_ID"
+
+# Optional "Dev column home": cards in active development group in a Dev column
+# until they reach a downstream column (QA/Done/…). Leave both unset to disable.
+# A card counts as "in dev" if it carries a label named "DEV" on either side.
+# dev_list_id  = "HUB_DEV_LIST_ID"
+# dev_label_id = "HUB_DEV_LABEL_ID"
+
+# ---- one [[sources]] block per shared/team board to aggregate from -----------
+[[sources]]
+board_id = "SOURCE_BOARD_ID_1"
+name     = "Team Board A"
+# Optional: a hub-board label id to tag every mirror from this board (board origin).
+# origin_label_id = "HUB_LABEL_ID_A"
+
+[[sources]]
+board_id = "SOURCE_BOARD_ID_2"
+name     = "Team Board B"
+# origin_label_id = "HUB_LABEL_ID_B"
+
+[behavior]
+# Don't mirror cards whose label name contains this (case-insensitive). Empty = mirror all.
+exclude_label_substring = "initiative"
+# Re-upload attached files up to this size (bytes) so they open on the hub card.
+# Set to 0 to attach links only (never re-upload). Default 25 MB.
+attach_max_bytes = 26214400
+# Statuses that "win" over the Dev-column home (a card moved here leaves Dev).
+downstream_statuses = ["qa", "discussion", "hold", "done"]
+# Marker tag written into mirror descriptions. Change only on a fresh setup.
+marker = "trello-hub-sync"
+
+[paths]
+state_db = "~/.local/state/trello-hub-sync/state.db"
+lock     = "~/.local/state/trello-hub-sync/sync.lock"
+log      = "~/.local/state/trello-hub-sync/sync.log"
+
+[comments]
+# Bidirectional comment sync: both | source_to_daily | daily_to_source | off
+direction = "both"
+
+# ---- optional real-time receiver --------------------------------------------
+[receiver]
+port = 18811
+# Secret URL path — treat like a password.  openssl rand -hex 16
+path = "/trello-hook/CHANGE_ME_TO_A_SECRET"
+# Public HTTPS URL your reverse proxy / tunnel forwards to this port + path.
+public_url = ""

@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trello-hub-sync"
+version = "1.0.0"
+description = "Self-hosted two-way Trello hub board: aggregate the cards you own across many boards onto one personal Kanban, and sync status, labels, content & comments back."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Nabbil Khan" }]
+keywords = ["trello", "kanban", "sync", "productivity", "self-hosted", "automation", "webhook"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: No Input/Output (Daemon)",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Office/Business :: Scheduling",
+]
+dependencies = []  # standard library only
+
+[project.urls]
+Homepage = "https://github.com/nabbilkhan/trello-hub-sync"
+Issues = "https://github.com/nabbilkhan/trello-hub-sync/issues"
+
+[project.scripts]
+trello-sync = "trellohub.cli:main"
+
+[tool.setuptools]
+packages = ["trellohub"]

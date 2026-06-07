@@ -1,0 +1,14 @@
+# Optional real-time webhook receiver (see docs/WEBHOOKS.md).
+# Enable:  systemctl --user enable --now trello-sync-receiver.service
+[Unit]
+Description=Trello Hub Sync webhook receiver
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=trello-sync receiver
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

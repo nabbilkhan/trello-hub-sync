@@ -1,0 +1,12 @@
+# Safety-poll sync. Pairs with trello-sync.timer.
+# Install (user units):  cp systemd/* ~/.config/systemd/user/ && systemctl --user daemon-reload
+[Unit]
+Description=Trello Hub Sync (poll)
+After=network-online.target
+
+[Service]
+Type=oneshot
+# `trello-sync` is the console script from `pip install`. If you didn't install
+# it on PATH, use:  ExecStart=%h/.local/bin/trello-sync sync
+ExecStart=trello-sync sync
+TimeoutStartSec=300

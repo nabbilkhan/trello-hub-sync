@@ -1,0 +1,13 @@
+# Runs the sync shortly after boot and every 30 minutes thereafter.
+# Enable:  systemctl --user enable --now trello-sync.timer
+[Unit]
+Description=Trello Hub Sync timer
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=30min
+AccuracySec=30s
+Persistent=true
+
+[Install]
+WantedBy=timers.target

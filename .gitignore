@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.eggs/
+.venv/
+venv/
+
+# Local config & secrets — NEVER commit these
+config.toml
+*.token
+*_token
+api_key
+api_secret
+
+# Local state / logs
+*.db
+*.sqlite
+*.log
+state/
